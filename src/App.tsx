@@ -5,6 +5,9 @@ import Home from '@/pages/Home';
 import About from '@/pages/About';
 import Advisor from '@/pages/Advisor';
 
+import SoilAnalyzer from '@/pages/SoilAnalyzer';
+import IrrigationAdvisor from '@/pages/IrrigationAdvisor';
+
 function App() {
   const location = useLocation();
 
@@ -17,6 +20,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/advisor" element={<Advisor />} />
+            <Route path="/soil" element={<SoilAnalyzer />} />
+            <Route path="/irrigation" element={<IrrigationAdvisor />} />
           </Routes>
         </main>
       </AnimatePresence>

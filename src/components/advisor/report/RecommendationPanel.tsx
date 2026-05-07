@@ -14,7 +14,7 @@ interface Recommendation {
 
 function generateRecommendations(
   soil: { nitrogen: number; phosphorus: number; potassium: number; ph: number },
-  weather: { temperature: number; humidity: number; rainfall: number } | null
+  weather: { temperature: number; humidity: number; rainfall_month_estimate: number } | null
 ): Recommendation[] {
   const recs: Recommendation[] = [];
 
@@ -40,10 +40,10 @@ function generateRecommendations(
   // ── Irrigation Advice ──
   let irrigationAdvice: string;
   if (weather) {
-    if (weather.rainfall > 120) {
+    if (weather.rainfall_month_estimate > 120) {
       irrigationAdvice =
         'Rainfall is sufficient — focus on drainage management to prevent waterlogging. Monitor field moisture regularly.';
-    } else if (weather.rainfall > 60) {
+    } else if (weather.rainfall_month_estimate > 60) {
       irrigationAdvice =
         'Moderate rainfall detected. Supplement with drip or sprinkler irrigation during dry spells for consistent moisture.';
     } else {

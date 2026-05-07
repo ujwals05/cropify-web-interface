@@ -144,6 +144,8 @@ export default function HeroResultCard() {
                   <span>{weather.temperature}°C</span>
                   <span className="w-1 h-1 bg-white/20 rounded-full" />
                   <span>{weather.humidity}% humidity</span>
+                  <span className="w-1 h-1 bg-white/20 rounded-full" />
+                  <span>{weather.rainfall_5day}mm est. rain</span>
                 </motion.div>
               )}
 
@@ -179,15 +181,15 @@ export default function HeroResultCard() {
 
 function generateInsight(
   crop: string,
-  weather: { temperature: number; humidity: number; rainfall: number } | null
+  weather: { temperature: number; humidity: number; rainfall_month_estimate: number } | null
 ): string {
   const cropLower = crop.toLowerCase();
   if (!weather) return `Ideal conditions detected for ${crop} cultivation.`;
 
-  const { temperature, humidity, rainfall } = weather;
+  const { temperature, humidity, rainfall_month_estimate } = weather;
 
-  if (humidity > 70 && rainfall > 100) {
-    return `High moisture conditions (${humidity}% humidity, ${rainfall}mm rainfall) are ideal for ${cropLower} — a water-friendly crop.`;
+  if (humidity > 70 && rainfall_month_estimate > 100) {
+    return `High moisture conditions (${humidity}% humidity, ${rainfall_month_estimate}mm est. rainfall) are ideal for ${cropLower} — a water-friendly crop.`;
   }
   if (temperature > 30) {
     return `Warm climate at ${temperature}°C combined with current soil profile strongly favors ${cropLower} growth.`;

@@ -85,6 +85,8 @@ export default function PredictionResult({ prediction, weather }: PredictionResu
                   <span>{weather.temperature}°C</span>
                   <span className="w-1 h-1 bg-white/20 rounded-full" />
                   <span>{weather.humidity}% humidity</span>
+                  <span className="w-1 h-1 bg-white/20 rounded-full" />
+                  <span>{weather.rainfall_month_estimate}mm est. rain</span>
                 </div>
               )}
             </div>
@@ -181,9 +183,9 @@ export default function PredictionResult({ prediction, weather }: PredictionResu
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-extrabold text-primary">{weather.rainfall}mm</div>
+              <div className="text-2xl font-extrabold text-primary">{weather.rainfall_month_estimate}mm</div>
               <div className="text-[10px] font-bold text-primary/30 uppercase tracking-wider mt-1">
-                Rainfall
+                Est. Rainfall
               </div>
             </div>
           </div>

@@ -4,20 +4,20 @@ import { useAdvisorStore } from '@/store/advisorStore';
 
 // ─── Climate Insight Generator ─────────────────────────────────────────────────
 
-function getClimateInsight(temp: number, humidity: number, rainfall: number): string {
-  if (humidity > 75 && rainfall > 100) {
+function getClimateInsight(temp: number, humidity: number, rainfall_month_estimate: number): string {
+  if (humidity > 75 && rainfall_month_estimate > 100) {
     return 'Climate conditions favor water-intensive crops like rice and sugarcane.';
   }
   if (humidity > 60 && temp > 25) {
     return 'Warm and humid conditions support tropical crop varieties.';
   }
-  if (temp < 20 && rainfall < 50) {
+  if (temp < 20 && rainfall_month_estimate < 50) {
     return 'Cool and dry conditions are suitable for wheat and barley cultivation.';
   }
   if (temp > 30 && humidity < 40) {
     return 'Hot arid conditions — consider drought-resistant crop varieties.';
   }
-  if (rainfall > 150) {
+  if (rainfall_month_estimate > 150) {
     return 'Heavy rainfall region — focus on crops with strong water-logging tolerance.';
   }
   return 'Moderate climate profile supports a diverse range of crop options.';
@@ -30,7 +30,7 @@ export default function WeatherPanel() {
 
   if (!weather) return null;
 
-  const insight = getClimateInsight(weather.temperature, weather.humidity, weather.rainfall);
+  const insight = getClimateInsight(weather.temperature, weather.humidity, weather.rainfall_month_estimate);
 
   const metrics = [
     {
@@ -51,8 +51,8 @@ export default function WeatherPanel() {
     },
     {
       icon: CloudRain,
-      label: 'Rainfall',
-      value: weather.rainfall,
+      label: 'Est. Rainfall',
+      value: weather.rainfall_month_estimate,
       unit: 'mm',
       gradient: 'from-violet-50 to-purple-50/80',
       iconColor: 'text-violet-500',

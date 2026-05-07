@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Leaf, Info, Sparkles, Menu } from 'lucide-react';
+import { Leaf, Info, Sparkles, Menu, ScanSearch, Droplets } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -9,6 +9,8 @@ const navItems = [
   { name: 'Home', path: '/', icon: Leaf },
   { name: 'About', path: '/about', icon: Info },
   { name: 'Advisor', path: '/advisor', icon: Sparkles },
+  { name: 'Soil Analyzer', path: '/soil', icon: ScanSearch },
+  { name: 'Irrigation', path: '/irrigation', icon: Droplets },
 ];
 
 export default function Navbar() {

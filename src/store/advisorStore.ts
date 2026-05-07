@@ -22,7 +22,8 @@ export interface WeatherData {
   country: string;
   temperature: number;
   humidity: number;
-  rainfall: number;
+  rainfall_5day: number;
+  rainfall_month_estimate: number;
 }
 
 export interface TopCrop {
@@ -161,9 +162,25 @@ export const useAdvisorStore = create<AdvisorState>((set, get) => ({
         potassium: Number(soilData.potassium),
         ph: Number(soilData.ph),
       });
-      // Backend returns { prediction: {...}, weather: {...} }
+      
+      // Log response for debugging missing fields
+      console.log('[Advisor] API Response:', res.data);
+
+      const predictionRaw = res.data?.prediction;
+      const weatherRaw = res.data?.weather;
+
+      // Handle backend returning prediction as a string instead of object
+      const mappedPrediction: PredictionData = typeof predictionRaw === 'string'
+        ? {
+            recommended_crop: predictionRaw,
+            confidence: 90, // Fallback
+            top_3: []       // Fallback
+          }
+        : predictionRaw;
+
       set({
-        prediction: res.data.prediction,
+        prediction: mappedPrediction,
+        weather: weatherRaw || weather, // Fallback to existing if missing
         showResults: true,
       });
     } catch (err: unknown) {

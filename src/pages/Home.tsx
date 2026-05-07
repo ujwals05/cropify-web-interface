@@ -71,7 +71,13 @@ export default function Home() {
 
             <div className="flex flex-wrap items-center gap-4">
               <Link to="/advisor">
-                <Button size="lg" className="shadow-lg hover:shadow-accent/20 px-10 group">
+                <Button
+                  size="lg"
+                  className="bg-primary text-white px-10 shadow-lg 
+             hover:bg-accent hover:text-primary 
+             hover:scale-105 active:scale-95
+             transition-all duration-300 group"
+                >
                   Start Analyzing
                   <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>

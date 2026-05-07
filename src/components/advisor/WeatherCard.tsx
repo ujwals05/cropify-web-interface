@@ -6,7 +6,8 @@ export interface WeatherData {
   country: string;
   temperature: number;
   humidity: number;
-  rainfall: number;
+  rainfall_5day: number;
+  rainfall_month_estimate: number;
 }
 
 interface WeatherCardProps {
@@ -162,8 +163,8 @@ export default function WeatherCard({ weather, isLoading, error, onRetry }: Weat
               />
               <MetricCard
                 icon={CloudRain}
-                label="Rainfall"
-                value={weather.rainfall}
+                label="Est. Rain/mo"
+                value={weather.rainfall_month_estimate}
                 unit="mm"
                 color="from-violet-50/50 to-violet-50/80"
                 delay={0.3}

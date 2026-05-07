@@ -40,7 +40,7 @@ const severityStyles: Record<InsightSeverity, { bg: string; border: string; icon
 
 function generateInsights(
   soil: { nitrogen: number; phosphorus: number; potassium: number; ph: number },
-  weather: { temperature: number; humidity: number; rainfall: number } | null,
+  weather: { temperature: number; humidity: number; rainfall_month_estimate: number } | null,
   crop: string
 ): Insight[] {
   const insights: Insight[] = [];
@@ -115,9 +115,9 @@ function generateInsights(
         icon: Info,
       });
     }
-    if (weather.rainfall > 120) {
+    if (weather.rainfall_month_estimate > 120) {
       insights.push({
-        text: `Abundant rainfall (${weather.rainfall}mm) reduces irrigation needs — ideal for water-intensive crops.`,
+        text: `Abundant rainfall (est. ${weather.rainfall_month_estimate}mm/mo) reduces irrigation needs — ideal for water-intensive crops.`,
         severity: 'success',
         icon: CheckCircle2,
       });
