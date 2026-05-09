@@ -11,6 +11,7 @@ const navItems = [
   { name: 'Advisor', path: '/advisor', icon: Sparkles },
   { name: 'Soil Analyzer', path: '/soil', icon: ScanSearch },
   { name: 'Irrigation', path: '/irrigation', icon: Droplets },
+  { name: 'Disease Detector', path: '/disease', icon: ScanSearch },
 ];
 
 export default function Navbar() {

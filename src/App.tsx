@@ -8,6 +8,8 @@ import Advisor from '@/pages/Advisor';
 import SoilAnalyzer from '@/pages/SoilAnalyzer';
 import IrrigationAdvisor from '@/pages/IrrigationAdvisor';
 
+import DiseaseDetector from '@/pages/DiseaseDetector';
+
 function App() {
   const location = useLocation();
 
@@ -22,6 +24,7 @@ function App() {
             <Route path="/advisor" element={<Advisor />} />
             <Route path="/soil" element={<SoilAnalyzer />} />
             <Route path="/irrigation" element={<IrrigationAdvisor />} />
+            <Route path="/disease" element={<DiseaseDetector />} />
           </Routes>
         </main>
       </AnimatePresence>
