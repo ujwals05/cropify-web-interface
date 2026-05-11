@@ -305,16 +305,27 @@ export default function DiseaseDetector() {
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <h3 className="text-sm font-bold uppercase tracking-[0.2em] opacity-60 mb-4">Detection Result</h3>
-                  <div className="text-4xl md:text-5xl font-extrabold tracking-tight mb-1">{result.plant}</div>
-                  <div className="flex items-center gap-2 text-xl md:text-2xl font-bold opacity-90">
-                    {!result.is_healthy && <AlertTriangle size={24} className="text-white" />}
-                    {result.disease}
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                  <div className="space-y-1">
+                    <h3 className="text-sm font-bold uppercase tracking-[0.2em] opacity-60 mb-4">Detection Result</h3>
+                    <div className="text-4xl md:text-5xl font-extrabold tracking-tight mb-1">{result.plant}</div>
+                    <div className="flex items-center gap-2 text-xl md:text-2xl font-bold opacity-90">
+                      {!result.is_healthy && <AlertTriangle size={24} className="text-white" />}
+                      {result.disease}
+                    </div>
                   </div>
-                  <div className="text-base md:text-lg font-bold opacity-70 mt-6 flex items-center gap-2">
-                    <BarChart3 size={18} />
-                    {(result.confidence * 100).toFixed(1)}% Confidence
+
+                  <div className="relative group/conf">
+                    <div className="absolute -inset-4 bg-white/20 rounded-2xl blur-xl opacity-0 group-hover/conf:opacity-100 transition-opacity duration-500" />
+                    <div className="relative flex flex-col items-end">
+                      <div className="text-3xl md:text-4xl font-black tracking-tighter">
+                        {(result.confidence * 100).toFixed(1)}%
+                      </div>
+                      <div className="text-[10px] font-black uppercase tracking-widest opacity-60 flex items-center gap-1.5">
+                        <BarChart3 size={12} strokeWidth={3} />
+                        Confidence Level
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -336,13 +347,19 @@ export default function DiseaseDetector() {
                         </div>
                         <div className="text-sm font-extrabold text-primary">{(pred.confidence * 100).toFixed(1)}%</div>
                       </div>
-                      <div className="h-2 w-full bg-muted/20 rounded-full overflow-hidden">
+                      <div className="h-3 w-full bg-muted/20 rounded-full overflow-hidden p-[2px]">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${pred.confidence * 100}%` }}
-                          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-                          className={`h-full rounded-full ${pred.is_healthy ? 'bg-accent' : 'bg-red-500'}`}
-                        />
+                          transition={{ duration: 1.5, ease: [0.34, 1.56, 0.64, 1], delay: 0.2 + (i * 0.1) }}
+                          className={`h-full rounded-full relative ${
+                            pred.is_healthy 
+                              ? 'bg-gradient-to-r from-accent to-[#D4FF70]' 
+                              : 'bg-gradient-to-r from-red-600 to-red-400'
+                          }`}
+                        >
+                          <div className="absolute inset-0 bg-white/20 animate-pulse" />
+                        </motion.div>
                       </div>
                       {i < result.top_3.length - 1 && <div className="pt-2 border-b border-muted/10" />}
                     </div>
